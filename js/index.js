@@ -48,7 +48,7 @@ function visual() {
     requestAnimationFrame(start)
     function start(){
         analyser.getByteFrequencyData(arr)
-        console.log(arr)
+        // console.log(arr)
         requestAnimationFrame(start)
     }
 }
