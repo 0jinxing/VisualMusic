@@ -49,7 +49,7 @@ function visual() {
     function start(){
         analyser.getByteFrequencyData(arr)
         console.log(arr)
-        requestAnimationFrame(strat)
+        requestAnimationFrame(start)
     }
 }
 visual()
