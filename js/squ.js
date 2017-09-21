@@ -42,10 +42,23 @@ Squ.prototype.sport = function () {
     this.x += this.sx
     this.y += this.sy
 }
-Squ.getManager = function (ctxW, ctxH, fsqu, ssqu) {
-    fsqu.forEach(function(element) {
-        
+Squ.getManager = function (ctxW, ctxH, fsqus, ssqus) {
+    fsqus.forEach(function (element, index, arr) {
+        // fsqus(最初始的矩形)只进行垂直方向上的运动(向上)
+        // 检查是否有出现在舞台之外的元素,将其删除
+        if (element.y + element.len < 0) {
+            arr.splice(index, 1)
+        }
     }, this);
+    ssqus.forEach(function (element, index, arr) {
+        // ssqus(子矩形)同时进行垂直方向(向下)和水平方向(左或右)的运动
+        // 检查是否有出现在舞台之外的元素,将其删除
+        if (element.x + element.len < 0 || element.x > ctxW) {
+            arr.splice(index, 1)
+        } else if (element.y > ctxH) {
+            arr.splice(index, 1)
+        }
+    })
 }
 
 // 一些好看的颜色
