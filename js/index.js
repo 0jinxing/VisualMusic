@@ -50,7 +50,6 @@ fileInput.onchange = function () {
     fr.onload = function (ev) {
         ev = ev || window.event
         var re = ev.target.result
-        console.log(321)
         audioContext.decodeAudioData(re, function (buffer) {
             var bufferSource = audioContext.createBufferSource()
             bufferSource.buffer = buffer
@@ -77,7 +76,6 @@ function visual() {
 
     function start() {
         analyser.getByteFrequencyData(arr)
-        // console.log(arr)
         requestAnimationFrame(start)
     }
 }
