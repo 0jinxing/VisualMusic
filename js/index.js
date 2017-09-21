@@ -42,6 +42,29 @@ function loadData(url) {
 // 加载和播放音乐
 loadData("./src/李想Evelyn - 分赃.mp3")
 
+// 选择文件播放
+var fileInput = _("#file-input")[0]
+var fr = new FileReader()
+fileInput.onchange = function () {
+    fr.readAsArrayBuffer(fileInput.files[0])
+    fr.onload = function (ev) {
+        ev = ev || window.event
+        var re = ev.target.result
+        console.log(321)
+        audioContext.decodeAudioData(re, function (buffer) {
+            var bufferSource = audioContext.createBufferSource()
+            bufferSource.buffer = buffer
+            bufferSource.connect(analyser)
+            /**
+             * bufferSource => analyser => gain => destination
+             */
+            // 停止上一个的播放
+            curSource && curSource[curSource.stop ? "stop" : "noteOff"]()
+            curSource = bufferSource
+            curSource && curSource[curSource.start ? "start" : "noteOn"](0)
+        })
+    }
+}
 var arr = null
 
 function visual() {
@@ -63,7 +86,7 @@ visual()
 // 下面是开始绘制工作
 // 一些好看的颜色
 var foregroundColor = "#E57B85"
-var backgroundColor = "#727272"
+var backgroundColor = "white"
 
 var canvasDom = _("#visual-block")[0]
 var ctx = canvasDom.getContext("2d")

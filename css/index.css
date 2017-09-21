@@ -1,0 +1,10 @@
+.contant {
+    margin-top: 28px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#visual-block {
+    border-bottom: 3px solid black;
+}
