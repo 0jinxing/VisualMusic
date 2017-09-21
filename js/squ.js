@@ -39,10 +39,13 @@ Squ.prototype.decay = function () {
     return sonSqus
 }
 Squ.prototype.sport = function () {
-    this.x += this.sx
+    if (this.sx) {
+        this.x += this.sx
+        this.sx += (-1 * this.sx) / this.sx
+    }
     this.y += this.sy
 }
-Squ.getManager = function (ctxW, ctxH, fsqus, ssqus) {
+Squ.manager = function (ctxW, ctxH, fsqus, ssqus) {
     fsqus.forEach(function (element, index, arr) {
         // fsqus(最初始的矩形)只进行垂直方向上的运动(向上)
         // 检查是否有出现在舞台之外的元素,将其删除
@@ -60,7 +63,3 @@ Squ.getManager = function (ctxW, ctxH, fsqus, ssqus) {
         }
     })
 }
-
-// 一些好看的颜色
-var colors = ["#C3BED4", "#C7FFEC", "#FD5B78", "#426ab3", "#da765b"]
-var backgroundColor = "#404040"

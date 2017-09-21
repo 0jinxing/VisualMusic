@@ -40,10 +40,13 @@ function loadData(url) {
     xhr.send()
 }
 // 加载和播放音乐
+// TODO
 loadData("./src/李想Evelyn - 分赃.mp3")
 
+var arr = null
+
 function visual() {
-    var arr = new Uint8Array(analyser.frequencyBinCount)
+    arr = new Uint8Array(analyser.frequencyBinCount)
     var requestAnimationFrame = window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         mozRequestAnimationFrame ||
@@ -56,4 +59,5 @@ function visual() {
         requestAnimationFrame(start)
     }
 }
+// TODO
 visual()
