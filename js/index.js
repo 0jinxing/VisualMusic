@@ -8,6 +8,7 @@ var audioContext = new(window.AudioContext || window.webkitAudioContext)()
 var gain = audioContext[audioContext.createGain ? "createGain" : "createGainNode"]()
 // 获取analyser对象(可分析音频数据)
 var analyser = audioContext.createAnalyser()
+analyser.fftSize = 512
 // 创建联系
 gain.connect(audioContext.destination)
 analyser.connect(gain)
@@ -40,13 +41,16 @@ function loadData(url) {
 }
 // 加载和播放音乐
 loadData("./src/李想Evelyn - 分赃.mp3")
+
 function visual() {
     var arr = new Uint8Array(analyser.frequencyBinCount)
     var requestAnimationFrame = window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
-        mozRequestAnimationFrame
+        mozRequestAnimationFrame ||
+        msRequestAnimationFrame
     requestAnimationFrame(start)
-    function start(){
+
+    function start() {
         analyser.getByteFrequencyData(arr)
         // console.log(arr)
         requestAnimationFrame(start)
