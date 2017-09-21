@@ -40,7 +40,6 @@ function loadData(url) {
     xhr.send()
 }
 // 加载和播放音乐
-// TODO
 loadData("./src/李想Evelyn - 分赃.mp3")
 
 var arr = null
@@ -59,5 +58,27 @@ function visual() {
         requestAnimationFrame(start)
     }
 }
-// TODO
 visual()
+
+// 下面是开始绘制工作
+// 一些好看的颜色
+var foregroundColor = "#E57B85"
+var backgroundColor = "#727272"
+
+var canvasDom = _("#visual-block")[0]
+var ctx = canvasDom.getContext("2d")
+
+function draw() {
+    ctx.fillStyle = backgroundColor
+    ctx.fillRect(0, 0, canvasDom.width, canvasDom.height)
+    arr.forEach(function (element, index, arr) {
+        ctx.fillStyle = foregroundColor
+        ctx.fillRect(
+            index * Math.floor(canvasDom.width / (arr.length)),
+            canvasDom.height - ((element / 255) * canvasDom.height),
+            Math.ceil(canvasDom.width / (arr.length)),
+            ((element / 255) * canvasDom.height)
+        )
+    }, this);
+}
+setInterval(draw, 10)
