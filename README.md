@@ -1,2 +1,2 @@
 # 音乐可视化
-## [效果展示](https://lincodes.github.io/VisualMusic/)
+## [效果展示](https://unroll.github.io/VisualMusic/)
